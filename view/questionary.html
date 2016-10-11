@@ -1,0 +1,86 @@
+<!doctype html>
+<html ng-app="questionaryApp">
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+<script src="/public/questionary"></script>
+<title>sakuraアンケート</title>
+</head>
+<body>
+  <div class="container">
+    <h1>sakuraアンケート</h1>
+    <div ng-controller="myController as myCtrl">
+      <table class="table" id="qtable">
+        <tr ng-repeat="member in members">
+          <td>Q{{member.number}}:</td>
+          <td>
+            <div class="form-group">
+              <label for="qa">{{member.question}}</label>
+              <input type="text" id="qa{{$index}}" class="form-control">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div class="center-block" style="width: 220px">
+          <button data-toggle="modal" class="btn btn-primary"
+                  style="width:100px" ng-click="register()">登録</button>
+          <button class="btn btn-primary"
+                  data-toggle="modal" style="width:100px"
+                  ng-click="cancel()">キャンセル</button>
+      </div>
+
+      <div class="modal" id="modal-question" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="modal-label">sakuraアンケート</h4>
+            </div>
+            <div class="modal-body">
+              {{question}}
+            </div>
+            <div class="hidden">
+              {{arg1}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default"
+                      data-dismiss="modal"
+                      ng-click="question_yes()">はい</button>
+              <button type="button" class="btn btn-default"
+                      data-dismiss="modal">いいえ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="modal-message" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="modal-label">sakuraアンケート</h4>
+            </div>
+            <div class="modal-body">
+              {{message}}
+            </div>
+            <div class="hidden">
+              {{arg2}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default"
+                      data-dismiss="modal"
+                      ng-click="message_ok()">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

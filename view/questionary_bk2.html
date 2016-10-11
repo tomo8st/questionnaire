@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="questionaryApp">
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+<script>
+var app = angular.module('questionaryApp', []);
+app.controller('myController', function() {
+    this.members = [
+        { number: '1', question: '所属部門を教えてください。'},
+        { number: '2', question: 'このセミナーは分かりやすかったですか？'},
+        { number: '3', question: 'セミナーの教材は分かりやすかったですか？'},
+        { number: '4', question: '講師の説明は分かりやすかったですか？'},
+        { number: '5', question: 'セミナー内容の理解度を教えてください'}
+    ];
+});
+</script>
+</head>
+<body>
+  <div class="container">
+    <h1>アンケート</h1>
+    <div ng-controller="myController as myCtrl">
+      <table class="table">
+        <tr ng-repeat="member in myCtrl.members">
+          <td>Q{{member.number}}:</td>
+          <td>
+            <div class="form-group">
+              <label for="qa">{{member.question}}</label>
+              <input type="text" id="qa" class="form-control">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div class="center-block" style="width: 220px">
+          <button class="btn btn-primary" style="width:100px">登録</button>　
+          <button class="btn btn-primary" style="width:100px">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
